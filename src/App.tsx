@@ -110,9 +110,19 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-gray-50 flex flex-col min-h-[550px] md:aspect-[21/10] lg:max-h-[800px]">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center">
+      <section className="relative w-full bg-gray-50 flex flex-col md:block md:min-h-[550px] md:aspect-[21/10] lg:max-h-[800px] overflow-hidden">
+        {/* Mobile Image (Visible only on small screens) */}
+        <div className="w-full h-64 sm:h-80 md:hidden relative">
+          <img 
+            src="https://i.ibb.co/yjFZ1xC/1774023056890-2.jpg" 
+            alt="Pest Control Family" 
+            className="w-full h-full object-cover object-center" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent"></div>
+        </div>
+
+        {/* Desktop Background Image */}
+        <div className="hidden md:flex absolute inset-0 z-0 items-center justify-center">
           <img 
             src="https://i.ibb.co/yjFZ1xC/1774023056890-2.jpg" 
             alt="Pest Control Family" 
@@ -120,16 +130,16 @@ export default function App() {
           />
         </div>
         
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/5 z-0"></div>
+        {/* Overlay (Desktop only) */}
+        <div className="hidden md:block absolute inset-0 bg-black/5 z-0"></div>
         
-        {/* Bottom Gradient Transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
+        {/* Bottom Gradient Transition (Desktop only) */}
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
         {/* Content */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center py-12 md:py-16">
-          {/* Text Container with Blur */}
-          <div className="bg-white/85 backdrop-blur-md p-6 md:p-10 rounded-3xl shadow-2xl border border-white/50 text-center animate-slide-up w-full max-w-4xl mx-auto mt-8">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pb-12 pt-0 md:py-16 md:absolute md:inset-0 md:h-full">
+          {/* Text Container */}
+          <div className="bg-white md:bg-white/85 md:backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl md:shadow-2xl border border-gray-100 md:border-white/50 text-center animate-slide-up w-full max-w-4xl mx-auto -mt-12 md:mt-8 relative z-30">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-900 tracking-tight mb-4 leading-tight drop-shadow-sm">
               GUARANTEED <span className="text-red-600">PEST-FREE</span> HOME FOR YOUR FAMILY
             </h1>
