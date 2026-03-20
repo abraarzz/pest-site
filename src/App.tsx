@@ -110,36 +110,46 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section 
-        className="relative pt-24 pb-32 lg:pt-36 lg:pb-48 overflow-hidden bg-fixed bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('https://i.ibb.co/yjFZ1xC/1774023056890-2.jpg')" }}
-      >
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-0"></div>
+      <section className="relative w-full overflow-hidden bg-gray-50 flex flex-col min-h-[550px] md:aspect-[21/10] lg:max-h-[800px]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+          <img 
+            src="https://i.ibb.co/yjFZ1xC/1774023056890-2.jpg" 
+            alt="Pest Control Family" 
+            className="w-full h-full object-contain object-center" 
+          />
+        </div>
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/5 z-0"></div>
+        
+        {/* Bottom Gradient Transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
-        {/* Bottom Gradient Transition to Services Section */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10"></div>
-
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-slide-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-blue-900 tracking-tight mb-6 max-w-4xl mx-auto leading-tight drop-shadow-md">
-            GUARANTEED <span className="text-red-600">PEST-FREE</span> HOME FOR YOUR FAMILY
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-900 max-w-2xl mx-auto mb-10 font-semibold drop-shadow-sm">
-            Protecting Guwahati Homes with Professional, Safe, and Fast Solutions. 24/7 Support.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="w-full sm:w-auto bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-bounce-slow shadow-lg">
-              GET A FREE QUOTE
-            </button>
-            <a 
-              href="https://wa.me/918099327682" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center justify-center space-x-2 shadow-lg"
-            >
-              <MessageCircle size={24} />
-              <span>WHATSAPP US</span>
-            </a>
+        {/* Content */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center py-12 md:py-16">
+          {/* Text Container with Blur */}
+          <div className="bg-white/85 backdrop-blur-md p-6 md:p-10 rounded-3xl shadow-2xl border border-white/50 text-center animate-slide-up w-full max-w-4xl mx-auto mt-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-900 tracking-tight mb-4 leading-tight drop-shadow-sm">
+              GUARANTEED <span className="text-red-600">PEST-FREE</span> HOME FOR YOUR FAMILY
+            </h1>
+            <p className="text-base md:text-lg text-gray-900 max-w-2xl mx-auto mb-6 md:mb-8 font-semibold">
+              Protecting Guwahati Homes with Professional, Safe, and Fast Solutions. 24/7 Support.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
+              <button className="w-full sm:w-auto bg-blue-900 hover:bg-blue-800 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-bounce-slow shadow-lg">
+                GET A FREE QUOTE
+              </button>
+              <a 
+                href="https://wa.me/918099327682" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center justify-center space-x-2 shadow-lg"
+              >
+                <Phone size={20} />
+                <span>WHATSAPP US</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
