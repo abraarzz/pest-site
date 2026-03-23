@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Phone, 
   Globe, 
@@ -19,11 +19,52 @@ import {
   MapPin, 
   Mail, 
   Facebook, 
-  MessageCircle 
+  MessageCircle,
+  CheckCircle2
 } from 'lucide-react';
 
+const servicesData = [
+  {
+    id: 'termite',
+    title: 'Termite Control',
+    icon: ShieldAlert,
+    shortDesc: 'Complete eradication of termites protecting your wooden furniture and structure.',
+    fullDesc: 'Our comprehensive termite control program includes a thorough inspection, targeted treatments using advanced termiticides, and preventative measures to ensure long-lasting protection for your home\'s foundation and wooden structures.',
+    pricing: 'Starting from ₹1,500 (Depends on area size)',
+    features: ['Free Inspection', 'Odorless Treatment', 'Long-term Warranty', 'Safe for Pets & Children']
+  },
+  {
+    id: 'rodent',
+    title: 'Rodent Control',
+    icon: Rat,
+    shortDesc: 'Safe and effective trapping and removal of rats and mice from your premises.',
+    fullDesc: 'We use a combination of baiting, trapping, and exclusion techniques to eliminate rodent infestations. Our methods are designed to be highly effective while minimizing risks to your family and pets.',
+    pricing: 'Starting from ₹800',
+    features: ['Baiting & Trapping', 'Entry Point Sealing', 'Carcass Removal', 'Sanitization']
+  },
+  {
+    id: 'cockroach',
+    title: 'Cockroach Control',
+    icon: Bug,
+    shortDesc: 'Advanced gel treatments to eliminate cockroaches from kitchens and bathrooms.',
+    fullDesc: 'Our cockroach control utilizes advanced gel baits and targeted sprays that are highly effective against all cockroach species. The treatment is odorless and doesn\'t require you to empty your kitchen cabinets.',
+    pricing: 'Starting from ₹999',
+    features: ['Gel Baiting System', 'No Need to Empty Kitchen', 'Odorless Chemicals', 'Instant Results']
+  },
+  {
+    id: 'bedbugs',
+    title: 'Bed Bugs Control',
+    icon: Bed,
+    shortDesc: 'Thorough inspection and treatment to ensure a peaceful, bite-free sleep.',
+    fullDesc: 'Bed bugs require a meticulous approach. We conduct a detailed inspection of your mattresses, furniture, and crevices, followed by a specialized chemical treatment to eradicate bed bugs at all life stages.',
+    pricing: 'Starting from ₹1,200',
+    features: ['Deep Inspection', 'Multi-stage Treatment', 'Mattress Safe', 'Follow-up Visit Included']
+  }
+];
+
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<typeof servicesData[0] | null>(null);
 
   return (
     <div className="min-h-screen font-sans text-gray-800 bg-white selection:bg-blue-200">
@@ -177,41 +218,22 @@ export default function App() {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Service Card 1 */}
-                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 group">
-                  <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-900 transition-colors">
-                    <ShieldAlert size={28} className="text-blue-900 group-hover:text-white transition-colors" />
+                {servicesData.map((service) => (
+                  <div 
+                    key={service.id}
+                    onClick={() => setSelectedService(service)}
+                    className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 group cursor-pointer"
+                  >
+                    <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-900 transition-colors">
+                      <service.icon size={28} className="text-blue-900 group-hover:text-white transition-colors" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{service.shortDesc}</p>
+                    <div className="text-blue-600 font-semibold text-sm flex items-center group-hover:text-blue-800">
+                      View Pricing & Details <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Termite Control</h3>
-                  <p className="text-gray-600 text-sm">Complete eradication of termites protecting your wooden furniture and structure.</p>
-                </div>
-
-                {/* Service Card 2 */}
-                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 group">
-                  <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-900 transition-colors">
-                    <Rat size={28} className="text-blue-900 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Rodent Control</h3>
-                  <p className="text-gray-600 text-sm">Safe and effective trapping and removal of rats and mice from your premises.</p>
-                </div>
-
-                {/* Service Card 3 */}
-                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 group">
-                  <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-900 transition-colors">
-                    <Bug size={28} className="text-blue-900 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Cockroach Control</h3>
-                  <p className="text-gray-600 text-sm">Advanced gel treatments to eliminate cockroaches from kitchens and bathrooms.</p>
-                </div>
-
-                {/* Service Card 4 */}
-                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 group">
-                  <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-900 transition-colors">
-                    <Bed size={28} className="text-blue-900 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Bed Bugs Control</h3>
-                  <p className="text-gray-600 text-sm">Thorough inspection and treatment to ensure a peaceful, bite-free sleep.</p>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -452,6 +474,66 @@ export default function App() {
           <MessageCircle size={32} />
         </a>
       </div>
+      {/* Service Details Modal */}
+      {selectedService && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-slide-up relative">
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedService(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors z-10"
+            >
+              <X size={20} />
+            </button>
+            
+            {/* Modal Header */}
+            <div className="bg-blue-50 p-6 sm:p-8 flex items-center space-x-4">
+              <div className="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                <selectedService.icon size={32} className="text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-blue-900">{selectedService.title}</h3>
+                <p className="text-blue-700 font-medium mt-1">{selectedService.pricing}</p>
+              </div>
+            </div>
+            
+            {/* Modal Body */}
+            <div className="p-6 sm:p-8">
+              <p className="text-gray-700 leading-relaxed mb-6">
+                {selectedService.fullDesc}
+              </p>
+              
+              <h4 className="font-bold text-gray-900 mb-3 text-lg">What's Included:</h4>
+              <ul className="space-y-3 mb-8">
+                {selectedService.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start text-gray-700">
+                    <CheckCircle2 size={20} className="text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="https://wa.me/918099327682" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-green-600 hover:bg-green-500 text-white py-3 px-4 rounded-xl font-bold text-center transition-colors flex items-center justify-center space-x-2 shadow-md"
+                >
+                  <Phone size={20} />
+                  <span>Book Now</span>
+                </a>
+                <button 
+                  onClick={() => setSelectedService(null)}
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 px-4 rounded-xl font-bold text-center transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
